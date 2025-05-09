@@ -1,13 +1,11 @@
-Here's a clean and well-formatted `README.md` file based on your steps:
-
 ```markdown
-# RAG-PDF: PDF-based Retrieval-Augmented Generation
+# RAG-PDF
 
-This project allows users to upload PDFs and ask questions based on their content using RAG (Retrieval-Augmented Generation) with vector search and LLMs.
+A PDF-based Retrieval-Augmented Generation (RAG) project using Node.js (backend) and Next.js (frontend), with Google Gemini API and Clerk for authentication.
 
 ---
 
-## 🛠 Setup Instructions
+## 🔧 Getting Started
 
 ### 1. Clone the Repository
 
@@ -17,23 +15,18 @@ git clone https://github.com/SyedAbdullahAhmed/RAG-PDF.git
 
 ---
 
-## 📁 Project Structure
+### 2. Install Dependencies
 
-- `client/` – Next.js frontend
-- `server/` – Node.js backend with LangChain, Google GenAI, and Qdrant
+#### Terminal 1 (Backend)
 
----
-
-## 🔧 Install Dependencies
-
-### In **Terminal 1**:
 ```bash
 cd RAG-PDF
 cd server
 npm install
 ```
 
-### In **Terminal 2**:
+#### Terminal 2 (Frontend)
+
 ```bash
 cd RAG-PDF
 cd client
@@ -42,74 +35,101 @@ npm install
 
 ---
 
-## 🔑 Environment Setup
+### 3. Set Up Environment Variables
 
-1. Create a `.env` file in the `server/` directory.
-2. Add your **Gemini API key**:
-   ```
-   GEMINI_API_KEY=your_api_key_here
-   ```
+#### Backend (`server/.env`)
+Create a `.env` file and add your **Gemini API key**:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+#### Frontend (`client/.env.local`)
+Create a `.env.local` file and add your **Clerk project keys**:
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
+CLERK_SECRET_KEY=your_clerk_secret_key_here
+```
 
 ---
 
-## 🐳 Docker Setup (Valkey, BullMQ, Qdrant)
+### 4. Install Docker Desktop
 
-Make sure you have Docker Desktop installed.
+Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/) for your system. It is used to run:
+- Valkey (for BullMQ queue)
+- Qdrant (for vector DB)
 
-### In **Terminal 3**:
+---
+
+### 5. Start Docker Containers
+
+Open a **new terminal** and run:
+
 ```bash
 docker compose up -d
 ```
 
-> This will start the required services in the background.
+This will start all services in the background.
 
 ---
 
-## 🚀 Run the App
+### 6. Run the App (in 3 Terminals)
 
-Open **3 separate terminals** and run:
+#### Terminal 1 (Frontend)
 
-### Terminal 1 (Frontend):
 ```bash
-cd client
+cd RAG-PDF/client
 npm run dev
 ```
 
-### Terminal 2 (Backend API):
+#### Terminal 2 (Backend)
+
 ```bash
-cd server
+cd RAG-PDF/server
 npm run dev
 ```
 
-### Terminal 3 (Worker):
+#### Terminal 3 (Worker)
+
 ```bash
-cd server
+cd RAG-PDF/server
 npm run dev:worker
 ```
 
 ---
 
-## 🌐 Usage
+### 7. Open in Browser
 
-1. Open your browser and go to [http://localhost:3000](http://localhost:3000)
-2. Upload a PDF file.
-3. Ask questions based on the content of the uploaded PDF.
+Go to: [http://localhost:3000](http://localhost:3000)  
+Upload your PDF and start asking questions!
+
+---
+
+## 🧠 Features
+
+- Upload PDFs and ask context-aware questions.
+- Uses Google Gemini API for embeddings and chat.
+- Clerk integration for user authentication.
+- Vector search powered by Qdrant.
+- Job queue with BullMQ and Valkey (Redis alternative).
+
+---
+
+## 🐳 Docker Containers Used
+
+- `valkey` – For BullMQ jobs
+- `qdrant` – For vector storage and retrieval
 
 ---
 
 ## 📦 Tech Stack
 
-- **Frontend:** Next.js, Tailwind CSS
-- **Backend:** Node.js, LangChain, Google GenAI
-- **Database:** Qdrant (vector DB), Valkey (Redis fork for queues)
-- **Queue:** BullMQ
-- **Deployment:** Docker Compose
+- **Frontend:** Next.js, Clerk, TailwindCSS
+- **Backend:** Node.js, Express, LangChain, Google Generative AI
+- **Queue & DB:** BullMQ, Valkey, Qdrant
 
 ---
 
-## 📄 License
-
-MIT
+Feel free to contribute or raise issues in the repository.
 ```
-
-Let me know if you want badges, screenshots, or contribution guidelines added too.
