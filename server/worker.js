@@ -1,31 +1,42 @@
 import { Worker } from 'bullmq';
-import { OpenAIEmbeddings } from '@langchain/openai';
 import { QdrantVectorStore } from '@langchain/qdrant';
-import { Document } from '@langchain/core/documents';
 import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf';
-import { CharacterTextSplitter } from '@langchain/textsplitters';
+import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
+import { TaskType } from "@google/generative-ai";
+import 'dotenv/config'
 
+
+// Set your API key
 const worker = new Worker(
   'file-upload-queue',
   async (job) => {
+
     console.log(`Job:`, job.data);
     const data = JSON.parse(job.data);
-    /*
-    Path: data.path
-    read the pdf from path,
-    chunk the pdf,
-    call the openai embedding model for every chunk,
-    store the chunk in qdrant db
-    */
 
-    // Load the PDF
+    if (!data.path || typeof data.path !== 'string') {
+      throw new Error('Invalid or missing file path');
+    }
+
     const loader = new PDFLoader(data.path);
     const docs = await loader.load();
 
-    const embeddings = new OpenAIEmbeddings({
-      model: 'text-embedding-3-small',
-      apiKey: '',
+    console.log(`Loaded ${docs.length} documents`);
+
+    // const embeddings = new OpenAIEmbeddings({
+    //   model: 'text-embedding-3-small',
+    //   apiKey: '',
+    // });
+    const embeddings = new GoogleGenerativeAIEmbeddings({
+      apiKey: process.env.GEMINI_API_KEY,
+      modelName: 'embedding-001',
+      taskType: TaskType.RETRIEVAL_DOCUMENT,
+      title: 'Uploaded Document',
     });
+
+
+    const testVector = await embeddings.embedQuery("OK Google");
+    console.log(`✅ Embedding test vector length: ${testVector}`);
 
     const vectorStore = await QdrantVectorStore.fromExistingCollection(
       embeddings,
@@ -34,8 +45,13 @@ const worker = new Worker(
         collectionName: 'langchainjs-testing',
       }
     );
+    
     await vectorStore.addDocuments(docs);
     console.log(`All docs are added to vector store`);
+
+    
+    await job.remove(); // Clean up job from Redis
+    console.log(`✅ Job ${job.id} removed from queue`);
   },
   {
     concurrency: 100,
