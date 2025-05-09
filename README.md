@@ -133,3 +133,6 @@ Upload your PDF and start asking questions!
 
 Feel free to contribute or raise issues in the repository.
 ```
+
+
+![image](https://github.com/user-attachments/assets/f4e8f742-7a94-475c-a746-dd69f654d37a)
