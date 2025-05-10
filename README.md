@@ -135,5 +135,6 @@ Feel free to contribute or raise issues in the repository.
 ```
 
 
-![image](https://github.com/user-attachments/assets/f4e8f742-7a94-475c-a746-dd69f654d37)
+![RAG-UI](https://github.com/SyedAbdullahAhmed/RAG-PDF/blob/main/client/public/RAG-UI?raw=true)
+
 
