@@ -135,5 +135,5 @@ Feel free to contribute or raise issues in the repository.
 ```
 
 
-![Alt text](https://github.com/user-attachments/assets/f4e8f742-7a94-475c-a746-dd69f654d37)
+![image](https://github.com/user-attachments/assets/f4e8f742-7a94-475c-a746-dd69f654d37)
 
