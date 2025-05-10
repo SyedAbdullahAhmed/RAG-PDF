@@ -1,3 +1,10 @@
+
+![RAG-SYSTEM-DESIGN](./RAG-SYSTEM-DESIGN.png)
+
+![RAG-UI](./RAG-UI.PNG)
+
+
+
 ```markdown
 # RAG-PDF
 
@@ -132,8 +139,5 @@ Upload your PDF and start asking questions!
 
 
 
-![RAG-UI](./RAG-UI.png)
-
-![RAG-SYSTEM-DESIGN](./RAG-SYSTEM-DESIGN.png)
 
 
