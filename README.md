@@ -132,6 +132,8 @@ Upload your PDF and start asking questions!
 
 
 
-![RAG-UI](https://github.com/SyedAbdullahAhmed/RAG-PDF/blob/main/RAG-UI?raw=true)
+![RAG-UI](./RAG-UI.png)
+
+![RAG-SYSTEM-DESIGN](./RAG-SYSTEM-DESIGN.png)
 
 
