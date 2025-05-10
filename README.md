@@ -129,10 +129,7 @@ Upload your PDF and start asking questions!
 - **Backend:** Node.js, Express, LangChain, Google Generative AI
 - **Queue & DB:** BullMQ, Valkey, Qdrant
 
----
 
-Feel free to contribute or raise issues in the repository.
-```
 
 
 ![RAG-UI](https://github.com/SyedAbdullahAhmed/RAG-PDF/blob/main/client/public/RAG-UI?raw=true)
